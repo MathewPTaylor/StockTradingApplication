@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Register
+{% endblock %}
+
+{% block main %}
+    <h1 class="display-1">Stocks</h1>
+    <div class="row justify-content-center align-items-center">
+    <div class="col-6">
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Symbol</th>
+            <th scope="col">Shares</th>
+            <th scope="col">Price</th>
+            <th scope="col">Total Value</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% set ns = namespace(i = 1) %}
+            {% for stock in stocks %}
+                <tr>
+                    <th scope="row"> {{ ns.i }} </th>
+                    <td>{{ stock.symbol }}</td>
+                    <td>{{ stock.shares }}</td>
+                    <td>{{ stock.value }}</td>
+                    <td>{{ stock.value * stock.shares }}</td>
+                </tr>
+                {% set ns.i = ns.i + 1 %}
+            {% endfor %}
+        </tbody>
+    </table>
+    </div>
+    </div>
+    <p>balance: {{ balance }}</p>
+    <p>grand total: {{ sum }}</p>
+{% endblock %}
